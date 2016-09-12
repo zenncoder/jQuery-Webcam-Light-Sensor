@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery - Webcam Light Sensor</title>
+	
+	<script src="js/jquery-1.9.1.js" ></script>
+	<script src="js/jquery.image-brightness.js" ></script>
+	<script src="js/jquery.webcam-light-sensor.js" ></script>
+
+	<style>
+	body, img {
+		margin: 0;
+		padding: 0;
+	}
+	.container {
+		width: 900px;
+		margin: 0 auto;
+		position: relative;
+	}
+	</style>
+</head>
+<body>
+
+	<div class="container">
+		<p></p>
+
+		NOTE
+		<ul>
+			<li>Light intensity ranges from 0 to 255 (0 is the darkest and 255 is the brightest)</li>
+			<li>Chrome is requiring secure origins (HTTPS) for getUserMedia.
+				<a target="_blank" href="http://stackoverflow.com/questions/34215937/getusermedia-not-supported-in-chrome#answer-34216154">know more</a>
+			</li>
+		</ul>
+	</div>
+
+	<script>
+
+	$(document).ready(function() {
+
+		$.fn.webcamLightSensor({ refreshInterval: 100 }, function(lightIntensity) { // callback
+
+			/**
+			* NOTE
+			* 1. Light intensity range is 0 to 255 (0 is the darkest and 255 is the brightest)
+			* 2. Domain requires SSL to grant access to the webcam
+			*/
+
+			$('.container p').text('Light intensity/brightness around you is: '+lightIntensity);
+
+		});
+
+	});
+	</script>
+
+</body>
+</html>
