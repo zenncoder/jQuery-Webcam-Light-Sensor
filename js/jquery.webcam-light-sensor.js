@@ -54,8 +54,11 @@ if (typeof Object.create !== 'function') {
                         video: true
                     }, function(stream) { // success callback
 
-                        // video.src = window.URL.createObjectURL(stream);
-                        video.srcObject = stream;
+                        try {
+                            video.srcObject = stream;
+                        } catch (error) {
+                            video.src = window.URL.createObjectURL(stream);
+                        }
 
                         localMediaStream = stream;
 
